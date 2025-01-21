@@ -13,6 +13,7 @@ namespace DailyJokesApp.Models
         }
         //The name of the table "Jokes" needs to match the name of our models table
         public virtual DbSet<Jokes> Jokes { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Jokes>(entity =>
@@ -20,8 +21,14 @@ namespace DailyJokesApp.Models
                 //We are putting in what column in the table is the key column
                 entity.HasKey(k => k.JokeId);
             });
+            modelBuilder.Entity<Users>(entity =>
+            {
+                //We are putting in what column in the table is the key column
+                entity.HasKey(k => k.UserId);
+            });
             OnModelCreatingPartial(modelBuilder);
         }
+
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
