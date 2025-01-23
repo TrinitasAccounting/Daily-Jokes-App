@@ -29,7 +29,7 @@ namespace DailyJokesApp.Controllers
             var model = await _context.Users.ToListAsync();
             foreach (var item in model)
             {
-                list.Add(new Users { UserId = item.UserId, FirstName = item.FirstName, LastName = item.LastName, Username = item.Username, Email = item.Email });
+                list.Add(new Users { UserId = item.UserId, FirstName = item.FirstName, LastName = item.LastName, Username = item.Username, Email = item.Email, PhoneNumber = item.PhoneNumber, CountryCode = item.CountryCode });
             }
             return Ok(list);
         }
