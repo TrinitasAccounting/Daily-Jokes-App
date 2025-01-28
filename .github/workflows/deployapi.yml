@@ -5,6 +5,9 @@ name: Deploy Daily Jokes App Web API
 on:
   workflow_dispatch:
 
+env:
+  AZURE_WEBAPP_NAME: "app-dailyjokesapp-webapi-canada-dev-001"
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,8 +18,21 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
+      #The file path may need to vary some, can be confusing
       - name: Install dependencies
         run: dotnet restore ./DailyJokesApp.csproj
 
       - name: Build
         run: dotnet build ./DailyJokesApp.csproj --configuration Release --no-restore
+
+      #Publish
+      - name: Publish
+        run: dotnet publish ./DailyJokesApp.csproj --configuration Release --output ./publish
+
+      #deploy to azure
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME}}
+          publish-profile: ${{ secrets.API_PUBLISH_SECRET }}
+          package: ./publish
