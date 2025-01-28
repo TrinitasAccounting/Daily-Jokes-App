@@ -19,4 +19,4 @@ jobs:
         run: dotnet restore ./DailyJokesApp.csproj
 
       - name: Build
-        run: dotnet build ./DailyJokesApp.cdproj --configuration Release --no-restore
+        run: dotnet build ./DailyJokesApp.csproj --configuration Release --no-restore
