@@ -24,14 +24,15 @@ namespace DailyJokesApp.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Jokes>>> GetJokes()
         {
-            //return await _context.Jokes.ToListAsync();
-            List<Jokes> list = new List<Jokes>();
-            var model = await _context.Jokes.ToListAsync();
-            foreach (var item in model) 
-            { 
-                list.Add(new Jokes { JokeId = item.JokeId, Question = item.Question, Username = item.Username, Answer = item.Answer, DateCreated = item.DateCreated, NumberOfLikes = item.NumberOfLikes });
-            }
-            return Ok(list);
+            return await _context.Jokes.ToListAsync();
+
+            //List<Jokes> list = new List<Jokes>();
+            //var model = await _context.Jokes.ToListAsync();
+            //foreach (var item in model) 
+            //{ 
+            //    list.Add(new Jokes { JokeId = item.JokeId, Question = item.Question, Username = item.Username, Answer = item.Answer, DateCreated = item.DateCreated, NumberOfLikes = item.NumberOfLikes });
+            //}
+            //return Ok(list);
         }
 
         // GET: api/Jokes/5

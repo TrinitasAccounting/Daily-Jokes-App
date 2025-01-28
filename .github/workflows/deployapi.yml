@@ -1,0 +1,22 @@
+# github action to deploy Daily Jokes App Web API
+
+name: Deploy Daily Jokes App Web API
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Install dependencies
+        run: dotnet restore ./DailyJokesApp.csproj
+
+      - name: Build
+        run: dotnet build ./DailyJokesApp.cdproj --configuration Release --no-restore
