@@ -3,7 +3,8 @@
 name: Deploy Daily Jokes App Web API
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [master]
 
 env:
   AZURE_WEBAPP_NAME: "app-dailyjokesapp-webapi-canada-dev-001"
